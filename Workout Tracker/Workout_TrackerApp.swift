@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Workout_TrackerApp: App {
+    @StateObject private var workoutTemplateViewModel: WorkoutTemplateViewModel = WorkoutTemplateViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(workoutTemplateViewModel)
         }
     }
 }
