@@ -11,19 +11,22 @@ struct ContentView: View {
     @StateObject var workoutTemplateViewModel: WorkoutTemplateViewModel = WorkoutTemplateViewModel()
     
     private let workouts = [
-        WorkoutTemplate(id: UUID(), name: "Push", exercises: [Exercise(id: UUID(), name: "Bench")])
+        WorkoutTemplate(id: UUID(), name: "Push", exercises: [ExerciseTemplate(id: UUID(), name: "Bench")])
     ]
     
     var body: some View {
         VStack {
             NavigationView{
                 List {
-                    ForEach(workoutTemplateViewModel.workoutTemplates) { workout in
-                        HStack{
-                            Text("\(workout.name)")
-                                .font(.system(size: 18, weight: .regular, design: .default))
-                            Spacer()
-                            Image(systemName: "chevron.forward")
+                    ForEach(workoutTemplateViewModel.workoutTemplates) { workoutTemplate in
+                        NavigationLink {
+                            WorkoutView(workoutTemplate: workoutTemplate)
+                        } label: {
+                            HStack{
+                                Text("\(workoutTemplate.name)")
+                                    .font(.system(size: 18, weight: .regular, design: .default))
+                            }
+
                         }
                         
                     }

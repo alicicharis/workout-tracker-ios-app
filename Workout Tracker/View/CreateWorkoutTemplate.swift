@@ -36,24 +36,27 @@ struct CreateWorkoutTemplate: View {
                     Button(action: {
                         textFields.append("")
                     }) {
-                        Text("Add TextField")
+                        Text("Add exercise")
                             .padding()
-                            .background(Color.blue)
+                            .background(workoutName.count == 0 ? Color.gray : Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
                     
                     Button(action: {
-                        print("Text fields: \(textFields)")
+                        print("Creating workout \(textFields)")
                         workoutTemplateViewModel.createWorkoutTemplate(name: workoutName, exerciseNames: textFields)
                         
-                    }) {
+                    })
+                    {
                         Text("Create workout")
                             .padding()
-                            .background(Color.blue)
+                            .background(textFields.count == 0 || workoutName.count == 0 || textFields.allSatisfy({$0.isEmpty}) ? Color.gray : Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
+                    
+                    .disabled(textFields.count == 0 || workoutName.count == 0)
                 }
             }
             .padding()

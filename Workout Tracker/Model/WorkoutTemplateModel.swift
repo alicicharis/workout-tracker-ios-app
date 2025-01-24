@@ -10,10 +10,10 @@ import Foundation
 struct WorkoutTemplate: Identifiable {
     let id: UUID
     let name: String;
-    let exercises: [Exercise]
+    let exercises: [ExerciseTemplate]
 }
 
-struct Exercise: Identifiable {
+struct ExerciseTemplate: Identifiable {
     let id: UUID
     let name: String
 }
